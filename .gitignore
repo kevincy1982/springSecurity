@@ -3,3 +3,5 @@
 # compiled output
 /.idea
 out/artifacts/security_jar/security\.jar
+
+*.class
