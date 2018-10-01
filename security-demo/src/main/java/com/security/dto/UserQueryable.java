@@ -1,11 +1,16 @@
 package com.security.dto;
 
+import io.swagger.annotations.ApiModelProperty;
+
 public class UserQueryable {
 
+    @ApiModelProperty(value = "This is user name")
     private String userName;
 
+    @ApiModelProperty(value = "This is user age")
     private int age;
 
+    @ApiModelProperty(value = "This is user future age")
     private int ageTo;
 
     public String getUserName() {

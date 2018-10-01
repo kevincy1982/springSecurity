@@ -3,6 +3,8 @@ package com.security.controller;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.security.dto.User;
 import com.security.dto.UserQueryable;
+import com.security.exception.UserException;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.builder.ReflectionToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.springframework.data.domain.Pageable;
@@ -33,10 +35,11 @@ public class UserController {
 
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
-    public User getUser(@PathVariable String id){
+    public User getUser(@ApiParam(value = "This is user id") @PathVariable String id){
 
+//        throw new UserException(id);
+        System.out.println("Enter the service");
         User user = new User("tom", "password");
-
         return user;
     }
 
