@@ -1,0 +1,17 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.security.core.properities.SecurityProperties",
+      "name": "demo.security",
+      "type": "com.security.core.properities.SecurityProperties"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.security.core.properities.SecurityProperties",
+      "name": "demo.security.browser",
+      "type": "com.security.core.properities.BrowserProperties"
+    }
+  ]
+}
