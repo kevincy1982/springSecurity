@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 @Configuration
@@ -21,11 +23,20 @@ public class BrowserSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private SecurityProperties securityProperties;
 
+    @Autowired
+    private AuthenticationSuccessHandler demoAuthenticationSuccessHandler;
+
+    @Autowired
+    private AuthenticationFailureHandler demoAuthenticationFailedHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.formLogin()
             .loginPage("/authentication/require")
-            .loginProcessingUrl("/authentication/form") // customized login page to replace default login page.
+            .loginProcessingUrl("/authentication/form") // when accessing that url, spring knows to use usernameAndPassword filter
+                                                         // to handle the request
+            .successHandler(demoAuthenticationSuccessHandler)
+            .failureHandler(demoAuthenticationFailedHandler)
 //      http.httpBasic()
             .and()
             .authorizeRequests()
